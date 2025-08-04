@@ -1,7 +1,7 @@
 ---
+description: after code completion and app is deployed run this code for test the app
 alwaysApply: false
 ---
-
 Act as a professional QA tester and full-stack developer.
 
 The web application has just been deployed. Your job is to perform a complete end-to-end functionality audit, just like a senior QA engineer preparing the product for production.
