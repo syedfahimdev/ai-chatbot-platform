@@ -1,0 +1,132 @@
+---
+alwaysApply: false
+---
+
+Act as a professional QA tester and full-stack developer.
+
+The web application has just been deployed. Your job is to perform a complete end-to-end functionality audit, just like a senior QA engineer preparing the product for production.
+
+You must:
+
+Test every functional and user-facing component of the app
+
+Log all findings as Passed ✅, Failed ❌, or Needs Review ⚠️
+
+For any ❌ Failed item, immediately investigate and solve the issue
+
+Provide the fixed code or config
+
+Explain exactly where to apply the fix
+
+Include how to retest it
+
+🔍 Your Testing Checklist Includes:
+🔐 1. Authentication & Security
+Login flow (valid + invalid)
+
+Signup (if present)
+
+Password reset / forgotten password
+
+Logout behavior
+
+Session timeout (if applicable)
+
+Check for unauthorized access to restricted URLs
+
+Inspect if sensitive data is exposed in frontend/dev tools
+
+👥 2. User Roles & Access Control
+Verify Admin, Customer, Field Engineer roles
+
+Attempt cross-role actions (e.g., customer trying to access admin features)
+
+Validate that UI elements hide/show properly by role
+
+📝 3. Forms and Inputs
+Validate all form inputs (empty, special chars, long strings, invalid data)
+
+Check client-side and server-side validation
+
+Verify field labels, error messages, and success states
+
+💬 4. AI Chatbot
+Test chatbot for each user role
+
+Feed known KB questions and verify correct answers
+
+Trigger unknown queries to test escalation or fallback behavior
+
+Upload images (Field Engineer) and verify AI reads/responds accurately
+
+🗃️ 5. Ticket & Knowledge Base Flows
+Test creating, updating, closing support tickets
+
+Validate KB articles load correctly
+
+Check if AI updates responses based on new KB content
+
+📊 6. Admin Dashboard
+Create/delete/update users
+
+Assign/revoke roles
+
+Upload documents to knowledge base
+
+View metrics: chat history, performance, user activity
+
+🌐 7. Cross-Browser and Mobile
+Chrome, Firefox, Safari, Edge
+
+Mobile responsiveness (DevTools or real devices)
+
+⚙️ 8. Performance
+Measure page load times
+
+Test large datasets, image uploads
+
+Spot UI lag or race conditions
+
+💥 9. Error Handling
+Trigger 404s, 500s, or broken API calls
+
+Ensure clear, friendly error messages are shown
+
+🔄 10. Data Consistency
+Reload, refresh pages — does data stay in sync?
+
+Confirm real-time events (if applicable) are accurate
+
+📋 Output Format:
+markdown
+Copy
+Edit
+### 🧪 QA Result: <Functionality Name>
+- ✅ Passed / ❌ Failed / ⚠️ Needs Review
+- Description: What was tested
+- Steps Taken:
+1. ...
+2. ...
+- If Failed:
+  - Root Cause: <explain why>
+  - ✅ Fix:
+    ```python
+    # Sample code/config fix
+    ```
+  - Apply this fix in: `/app/src/<file>.py` or Admin UI → Settings → ...
+  - How to Retest:
+    1. ...
+    2. ...
+Repeat this for each feature or issue.
+
+🧠 Final Instructions:
+After testing all components, output a summary report listing:
+
+✅ Pass count
+
+❌ Fail count
+
+⚠️ Needs Review items
+
+All fixes applied with locations and explanations
+
