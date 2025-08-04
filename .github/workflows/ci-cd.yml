@@ -26,20 +26,6 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-      
-      chroma:
-        image: chromadb/chroma:latest
-        env:
-          CHROMA_SERVER_HOST: 0.0.0.0
-          CHROMA_SERVER_HTTP_PORT: 8000
-          CHROMA_SERVER_CORS_ALLOW_ORIGINS: "*"
-        ports:
-          - 8000:8000
-        options: >-
-          --health-cmd "curl -f http://localhost:8000/api/v1/heartbeat"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
     - name: Checkout code
@@ -70,8 +56,6 @@ jobs:
     - name: Run backend tests
       env:
         DATABASE_URL: postgresql+asyncpg://postgres:password@localhost:5432/ai_chatbot_test
-        CHROMA_HOST: localhost
-        CHROMA_PORT: 8000
         SECRET_KEY: test_secret_key
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
