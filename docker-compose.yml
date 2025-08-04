@@ -26,10 +26,20 @@ services:
     environment:
       - CHROMA_SERVER_HOST=0.0.0.0
       - CHROMA_SERVER_HTTP_PORT=8000
+      - CHROMA_SERVER_CORS_ALLOW_ORIGINS=*
+      - CHROMA_DB_IMPL=postgres
+      - CHROMA_DB_IMPL_POSTGRES_HOST=postgres
+      - CHROMA_DB_IMPL_POSTGRES_PORT=5432
+      - CHROMA_DB_IMPL_POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - CHROMA_DB_IMPL_POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - CHROMA_DB_IMPL_POSTGRES_DB=${POSTGRES_DB:-chatbot_db}
     volumes:
       - chroma_data:/chroma/chroma
     ports:
       - "8001:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - chatbot_network
     healthcheck:

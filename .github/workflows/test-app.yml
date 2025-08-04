@@ -31,11 +31,15 @@ jobs:
       chroma:
         image: chromadb/chroma:latest
         env:
-          DB_USER: postgres
-          DB_PASSWORD: password
-          DB_HOST: postgres
-          DB_PORT: 5432
-          DB_NAME: ai_chatbot_test
+          CHROMA_SERVER_HOST: 0.0.0.0
+          CHROMA_SERVER_HTTP_PORT: 8000
+          CHROMA_SERVER_CORS_ALLOW_ORIGINS: "*"
+          CHROMA_DB_IMPL: postgres
+          CHROMA_DB_IMPL_POSTGRES_HOST: postgres
+          CHROMA_DB_IMPL_POSTGRES_PORT: 5432
+          CHROMA_DB_IMPL_POSTGRES_USER: postgres
+          CHROMA_DB_IMPL_POSTGRES_PASSWORD: password
+          CHROMA_DB_IMPL_POSTGRES_DB: ai_chatbot_test
         ports:
           - 8000:8000
         options: >-
