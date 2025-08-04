@@ -43,7 +43,7 @@ A comprehensive AI chatbot system with dual interfaces for customer support and 
 
 ### Infrastructure
 - **Containerization**: Docker and Docker Compose
-- **CI/CD**: GitHub Actions with automated testing and deployment
+- **Deployment**: Netlify for frontend, various options for backend
 - **Environment**: Configurable via environment variables
 
 ## 🚀 Quick Start
@@ -86,14 +86,12 @@ A comprehensive AI chatbot system with dual interfaces for customer support and 
 
 ```
 ai-chatbot-platform/
-├── .github/workflows/          # GitHub Actions workflows
 ├── backend/                    # FastAPI backend
 │   ├── app/
 │   │   ├── api/v1/            # API endpoints
 │   │   ├── core/              # Core configuration
 │   │   ├── models/            # Database models
 │   │   └── services/          # Business logic
-│   ├── tests/                 # Backend tests
 │   └── requirements.txt       # Python dependencies
 ├── frontend/                  # React frontend
 │   ├── src/
@@ -101,8 +99,10 @@ ai-chatbot-platform/
 │   │   ├── contexts/          # React contexts
 │   │   ├── pages/             # Page components
 │   │   └── services/          # API services
+│   ├── netlify.toml          # Netlify configuration
 │   └── package.json          # Node.js dependencies
 ├── docker-compose.yml         # Docker orchestration
+├── netlify.toml              # Root Netlify configuration
 ├── env.example               # Environment template
 └── README.md                 # This file
 ```
@@ -155,12 +155,6 @@ ENVIRONMENT=development
 
 ## 🧪 Testing
 
-### Backend Tests
-```bash
-cd backend
-pytest tests/ -v
-```
-
 ### Frontend Tests
 ```bash
 cd frontend
@@ -179,26 +173,58 @@ curl http://localhost:3000
 
 ## 🚀 Deployment
 
-### GitHub Actions
+### Netlify Deployment (Frontend)
 
-The repository includes GitHub Actions workflows for:
-- **CI/CD Pipeline**: Automated testing and building
-- **Security Scanning**: Vulnerability scanning with Trivy
-- **Dependency Review**: Automated dependency analysis
+1. **Connect to Netlify**
+   - Go to [Netlify](https://netlify.com)
+   - Connect your GitHub repository
+   - Set build settings:
+     - Build command: `npm run build`
+     - Publish directory: `build`
+     - Base directory: `frontend`
 
-### Manual Deployment
-
-1. **Build Docker images**
-   ```bash
-   docker-compose build
+2. **Environment Variables**
+   Set these in Netlify dashboard:
+   ```
+   REACT_APP_API_URL=https://your-backend-url.com
+   REACT_APP_WS_URL=wss://your-backend-url.com
    ```
 
-2. **Deploy to your platform**
+3. **Deploy**
+   - Netlify will automatically deploy on every push to main branch
+   - Custom domain can be configured in Netlify dashboard
+
+### Backend Deployment Options
+
+1. **Railway** (Recommended for simplicity)
+   ```bash
+   # Install Railway CLI
+   npm install -g @railway/cli
+   
+   # Deploy backend
+   cd backend
+   railway login
+   railway init
+   railway up
+   ```
+
+2. **Render**
+   - Connect your GitHub repository
+   - Set build command: `pip install -r requirements.txt`
+   - Set start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+
+3. **Heroku**
+   ```bash
+   # Install Heroku CLI
+   heroku create your-app-name
+   git push heroku main
+   ```
+
+4. **Docker Platforms**
    - AWS ECS
    - Google Cloud Run
    - Azure Container Instances
    - DigitalOcean App Platform
-   - Heroku
 
 ### Production Considerations
 

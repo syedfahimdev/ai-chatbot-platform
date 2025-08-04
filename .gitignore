@@ -7,6 +7,10 @@
 .env.test.local
 .env.production.local
 
+# Cursor IDE
+.cursor/
+.cursor/rules/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -77,6 +81,9 @@ pids
 *.pid
 *.seed
 *.pid.lock
+
+# Netlify
+.netlify/
 
 # Coverage directory used by tools like istanbul
 coverage/
